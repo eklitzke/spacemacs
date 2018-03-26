@@ -86,6 +86,8 @@
         "s" 'message-dont-send         ; saves as draft
         "f" 'mml-attach-file)
 
+      (require 'mu4e-context nil 'noerror)
+
       (when mu4e-enable-async-operations
         (require 'smtpmail-async)
         (setq send-mail-function         'async-smtpmail-send-it
