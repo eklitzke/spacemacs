@@ -30,7 +30,7 @@
     (ivy-rtags :requires ivy rtags)
     org
     realgud
-    rtags
+    (rtags :site)
     semantic
     srefactor
     stickyfunc-enhance
