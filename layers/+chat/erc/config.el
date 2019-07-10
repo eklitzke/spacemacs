@@ -23,3 +23,6 @@
 
 (defvar erc-enable-notifications t
   "If non nil, enable ERC notifications.")
+
+(defvar erc-enable-images t
+  "If non nil, enable inline images in ERC buffers.")
