@@ -17,7 +17,7 @@
     :mode (("BUILD\\'" . bazel-mode)
            ("\\.BUILD\\'" . bazel-mode)
            ("WORKSPACE\\'" . bazel-workspace-mode))
-    :init
+    :config
     (progn
       ; gross, but required bc of how bazel-mode is packaged in melpa
       (require 'bazelrc-mode)
