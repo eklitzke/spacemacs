@@ -8,27 +8,27 @@
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; License: GPLv3
-(setq bazel-packages
-      '(bazel-mode))
+
+(setq bazel-packages '(bazel-mode))
 
 (defun bazel/init-bazel-mode ()
   (use-package bazel-mode
-    ;; :mode (("BUILD\\'" . bazel-mode)
-    ;;        ("\\.BUILD\\'" . bazel-mode)
-    ;;        ("WORKSPACE\\'" . bazel-workspace-mode))
     :init
     (progn
-      ; gross, but required bc of how bazel-mode is packaged in melpa
+      ;; These are provided as part of the bazel-mode package in MELPA, but
+      ;; aren't automatically required by bazel-mode.
       (require 'bazel-build)
       (require 'bazelrc-mode)
+
+      ;; Major modes to add keybindings to; bazel supports a few other
+      ;; languages, but c/c++, python, and java are the best supported (and most
+      ;; commonly used with bazel).
       (setq bazel-modes '(bazel-mode bazel-workspace-mode bazelrc-mode
                                      bazel-starlark-mode c-mode c++-mode
                                      python-mode java-mode))
       (dolist (mode bazel-modes)
              (spacemacs/declare-prefix-for-mode mode "mc" "compile")
-             (spacemacs/declare-prefix-for-mode mode "mp" "project")
              (spacemacs/set-leader-keys-for-major-mode mode
                "cc" 'bazel-build
                "cr" 'bazel-run
-               "ct" 'bazel-test)
-        ))))
+               "ct" 'bazel-test)))))
