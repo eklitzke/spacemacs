@@ -13,16 +13,17 @@
 
 (defun bazel/init-bazel-mode ()
   (use-package bazel-mode
-    :defer t
-    :mode (("BUILD\\'" . bazel-mode)
-           ("\\.BUILD\\'" . bazel-mode)
-           ("WORKSPACE\\'" . bazel-workspace-mode))
-    :config
+    ;; :mode (("BUILD\\'" . bazel-mode)
+    ;;        ("\\.BUILD\\'" . bazel-mode)
+    ;;        ("WORKSPACE\\'" . bazel-workspace-mode))
+    :init
     (progn
       ; gross, but required bc of how bazel-mode is packaged in melpa
+      (require 'bazel-build)
       (require 'bazelrc-mode)
-      (setq bazel-modes '(bazel-mode bazel-workspace-mode 'bazelrc-mode
-                                     'bazel-starlark-mode c-mode c++-mode))
+      (setq bazel-modes '(bazel-mode bazel-workspace-mode bazelrc-mode
+                                     bazel-starlark-mode c-mode c++-mode
+                                     python-mode java-mode))
       (dolist (mode bazel-modes)
              (spacemacs/declare-prefix-for-mode mode "mc" "compile")
              (spacemacs/declare-prefix-for-mode mode "mp" "project")
